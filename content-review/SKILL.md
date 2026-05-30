@@ -1,3 +1,8 @@
+---
+name: content-review
+description: Evaluates a markdown blog article using an internal script and returns structured JSON scores per metric.
+---
+
 # Content Review — Blog Article Evaluator
 
 The skill evaluates the given markdown blog article via our internal script.
