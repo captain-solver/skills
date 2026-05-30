@@ -1,0 +1,22 @@
+{
+  "name": "content-review",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/main.js --loader:.txt=text",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "groq-sdk": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "esbuild": "^0.28.0",
+    "prettier": "^3.8.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
