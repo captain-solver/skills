@@ -20,13 +20,13 @@ If no file path is provided, ask the user for it.
 ## How to run
 
 ```bash
-curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/main.js | node - "<file-path>"
+curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/content-review.js | node - "<file-path>"
 ```
 
 Example:
 
 ```bash
-curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/main.js | node - contents/example.md
+curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/content-review.js | node - contents/example.md
 ```
 
 ## Output

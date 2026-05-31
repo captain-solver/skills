@@ -1,6 +1,11 @@
 import { Groq } from 'groq-sdk';
 
-import { type ReviewerInitConfig } from './config';
+export type GroqModelInitConfig = {
+  model: string;
+  temperature: number;
+  max_completion_tokens: number;
+  top_p: number;
+};
 
 export type ReviewResult = {
   reviewer: string;
@@ -9,25 +14,25 @@ export type ReviewResult = {
   totalScore: number;
 };
 
-export default class Reviewer {
-  private static groq: Groq;
-  private reviewerInitConfig: ReviewerInitConfig;
+export class GroqModel {
+  private static groqClient: Groq;
+  private groqModelInitConfig: GroqModelInitConfig;
 
-  constructor(reviewerInitConfig: ReviewerInitConfig) {
+  constructor(groqModelInitConfig: GroqModelInitConfig) {
     try {
-      Reviewer.groq ??= new Groq();
+      GroqModel.groqClient ??= new Groq();
     } catch (e) {
       throw new Error(
         'The GROQ_API_KEY environment variable is missing or empty; Please visit https://console.groq.com/ to obtain one and set it in the environment variable.'
       );
     }
-    this.reviewerInitConfig = reviewerInitConfig;
+    this.groqModelInitConfig = groqModelInitConfig;
   }
 
-  async review(messages: Groq.Chat.ChatCompletionMessageParam[]): Promise<ReviewResult> {
-    const completion = (await Reviewer.groq.chat.completions.create({
+  async getFinalReview(messages: Groq.Chat.ChatCompletionMessageParam[]): Promise<ReviewResult> {
+    const completion = (await GroqModel.groqClient.chat.completions.create({
       messages,
-      ...this.reviewerInitConfig,
+      ...this.groqModelInitConfig,
       stream: false,
     })) as Groq.Chat.ChatCompletion;
 
@@ -46,7 +51,7 @@ export default class Reviewer {
     }
 
     return {
-      reviewer: this.reviewerInitConfig.model,
+      reviewer: this.groqModelInitConfig.model,
       ...parsed,
       totalScore:
         Object.values(parsed.metrics).reduce((acc: number, curr: any) => acc + curr.score, 0) /

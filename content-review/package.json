@@ -6,7 +6,7 @@
   "author": "",
   "type": "commonjs",
   "scripts": {
-    "build": "esbuild src/main.ts --bundle --platform=node --outfile=dist/main.js --loader:.txt=text",
+    "build": "esbuild src/content-review.ts --bundle --platform=node --outfile=dist/content-review.js --loader:.txt=text",
     "format": "prettier --write ."
   },
   "dependencies": {
