@@ -13,7 +13,7 @@ async function main() {
 
     console.log(JSON.stringify(reviewsAll, null, 2));
   } catch (error) {
-    console.log(
+    console.error(
       JSON.stringify({
         status: 'ERROR',
         error: error instanceof Error ? error.message : String(error),
