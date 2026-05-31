@@ -19,14 +19,16 @@ If no file path is provided, ask the user for it.
 
 ## How to run
 
+`<skill-dir>` is the directory containing this SKILL.md file.
+
 ```bash
-curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/content-review.js | node - "<file-path>"
+node "<skill-dir>/dist/content-review.js" "<file-path>"
 ```
 
 Example:
 
 ```bash
-curl -fsSL https://github.com/captain-solver/skills/releases/latest/download/content-review.js | node - contents/example.md
+node "<skill-dir>/dist/content-review.js" contents/example.md
 ```
 
 ## Output
